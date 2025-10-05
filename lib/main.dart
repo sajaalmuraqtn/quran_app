@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:quran_application/screens/homescreen.dart';
+import 'package:quran_application/screens/loadingscreen.dart';
 
 void main() {
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  runApp(
+    Directionality(
+      textDirection: TextDirection.rtl,
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: Homescreen()),
+    ),
+  );
 }
