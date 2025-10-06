@@ -1,48 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:quran_application/utils/network_helper.dart';
+import 'package:quran_application/screens/surahscreen.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({super.key});
+  const Homescreen({super.key, required this.surahList});
+  final List surahList;
 
   @override
   State<Homescreen> createState() => _HomescreenState();
 }
 
 class _HomescreenState extends State<Homescreen> {
-  final NetworkHelper networkHelper = NetworkHelper();
-  List<dynamic> ayahs = [];
-  int pageNumber = 1;
-  // bool isLoading = true;
-
-  Future<void> getPage(int pagenumber) async {
-    // setState(() => isLoading = true);
-    try {
-      final data = await networkHelper.getData(pagenumber);
-      setState(() {
-        ayahs = data;
-        // isLoading = false;
-      });
-    } catch (e) {
-      print("Error loading data: $e");
-      // setState(() => isLoading = false);
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(
-          Icons.nightlight_round_outlined,
-          color: Colors.white,
+        leading: Image(
+          image: AssetImage('assets/logo.png'),
         ),
+
         title: Text(
-          ayahs.isNotEmpty ? ayahs[0]['surah']['name'] : 'جاري التحميل...',
+          "القرآن الكريم",
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -52,39 +29,50 @@ class _HomescreenState extends State<Homescreen> {
         bottom: true,
         child: Directionality(
           textDirection: TextDirection.rtl,
-          child:
-              // const Center(child: CircularProgressIndicator(color: Colors.green))
-              PageView.builder(
-                itemCount: 604,
-                itemBuilder: (context, index) {
-                  getPage(index + 1); // تحميل الصفحة الجديدة
-
-                  return Column(
-                    children: [
-                      Wrap(
-                        spacing: 10, //مسافة بين الازرار
-                        runSpacing: 10, //سطر جديد
-
-                        children: [
-                          for (int i = 0; i < ayahs.length; i++)
-                            Text(
-                              " ${ayahs[i]['text']}،",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                        ],
+          child: ListView.builder(
+            itemCount: widget.surahList.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 6.0,
+                  horizontal: 8.0,
+                ),
+                child: ListTile(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Surahscreen(
+                        pages: widget.surahList[index].pages,
+                        surahsName: widget.surahList[index].name,
                       ),
-                      Spacer(),
-                      Text(
-                        "الصفحة رقم ${index + 1}",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
+                      // الانتقال الى صفحة السورة مع ارسال صفحات السورة و اسم السورة
+                    ),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: const BorderSide(color: Colors.green, width: 1),
+                  ),
+                  title: Text(
+                    "(${index + 1}) ${widget.surahList[index].name} ",
+                    style: const TextStyle(fontSize: 20, height: 1.5),
+                  ),
+                  subtitle: Text(
+                    'عدد الآيات: ${widget.surahList[index].numberOfAyahs}',
+                    style: const TextStyle(fontSize: 16, height: 1.5),
+                  ),
+                  trailing: Image(
+                    image: AssetImage(
+                      widget.surahList[index].isMediane
+                          ? 'assets/medinan.png'
+                          : 'assets/kaba.png',
+                    ),
+                    height: 30,
+                    width: 30,
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
