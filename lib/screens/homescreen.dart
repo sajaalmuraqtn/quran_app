@@ -53,7 +53,7 @@ class _HomescreenState extends State<Homescreen> {
                     side: const BorderSide(color: Colors.green, width: 1),
                   ),
                   title: Text(
-                    "(${index + 1}) ${widget.surahList[index].name} ",
+                    "(${index + 1}) سورة ${widget.surahList[index].name} ",
                     style: const TextStyle(fontSize: 20, height: 1.5),
                   ),
                   subtitle: Text(
