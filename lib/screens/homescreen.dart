@@ -42,7 +42,7 @@ class _HomescreenState extends State<Homescreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => Surahscreen(
-                        pages: widget.surahList[index].pages,
+                        pages: widget.surahList[index].pages,// [from,to] الصفحات الخاصة بالسورة
                         surahsName: widget.surahList[index].name,
                       ),
                       // الانتقال الى صفحة السورة مع ارسال صفحات السورة و اسم السورة
@@ -78,3 +78,4 @@ class _HomescreenState extends State<Homescreen> {
     );
   }
 }
+

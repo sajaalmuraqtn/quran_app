@@ -20,6 +20,8 @@ class Links {
     for (var i = 0; i < data['chapters'].length; i++) {
       allSurahs.add(
         Surah(
+          // نموذج بيانات السورة
+          // جلب كل معلومة من معلومات السورة وحطها في النموذج
           name: data['chapters'][i]['name_arabic'],
           numberOfAyahs: data['chapters'][i]['verses_count'],
           isMediane: data['chapters'][i]['revelation_place'] == 'madinah'

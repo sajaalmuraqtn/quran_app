@@ -2,10 +2,26 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:quran_application/models/surah.dart';
 import 'package:quran_application/utils/api_Urls.dart';
 
-// احضار صورة الصفحة نفسها من الانترنت وعرضها حسب رقم الصفحة
 class NetworkHelper {
+
+  // جلب كل السور من الانترنت
+    Future<Map<String, dynamic>> fetchAllSurahsData() async {
+    var response = await http.get(Uri.parse(baseUrlAllSurahs));
+    //jsonDecode  ->   mapل json string بيحوللي ال
+
+    if (response.statusCode == 200) {
+       return json.decode(response.body);
+      //  رح يرجعلي كل معلومات السور
+    } else {
+      return Future.error('error in fetching data');
+    }
+  }
+
+  // احضار صورة الصفحة نفسها من الانترنت وعرضها حسب رقم الصفحة
+
   Future<dynamic> getSurahsPageData(int pageNumber) async {
     http.Response response = await http.get(Uri.parse('$baseUrlPagesImage'));
     //لحتى يجيبلي الداتا  http requestامر موجود في ال -> get
@@ -25,20 +41,9 @@ class NetworkHelper {
       Future.error('error in fetching data');
       //requestبحالة فشل ال
     }
-  }
-
-  Future<Map<String, dynamic>> fetchAllSurahsData() async {
-    var response = await http.get(Uri.parse(baseUrlAllSurahs));
-    //jsonDecode  ->   mapل json string بيحوللي ال
-
-    if (response.statusCode == 200) {
-       return json.decode(response.body);
-      //  رح يرجعلي كل معلومات السور
-    } else {
-      return Future.error('error in fetching data');
-    }
-  }
-
+  }  
+  
+//  جلب آيات صفحة معينة من خلال رقم الصفحة
   Future<List<dynamic>> fetchAyahs(int pageNumber) async {
     var response = await http.get(
       Uri.parse('http://api.alquran.cloud/v1/page/$pageNumber/quran-uthmani'),
@@ -52,7 +57,8 @@ class NetworkHelper {
     }
   }
 }
- 
+
+
  /*
 class NetworkHelper {
   Future<dynamic> getData(int pagenumber) async {
