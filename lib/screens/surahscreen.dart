@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:quran_application/helper/links.dart';
 import 'package:quran_application/helper/network_helper.dart';
@@ -20,7 +21,7 @@ class _SurahscreenState extends State<Surahscreen> {
  bool isLoading = true;
 
   Links links = Links();
-  late Future<List<Image>> futruePages ;
+  late Future<List<CachedNetworkImage?>> futruePages ;
   @override
   void initState() {
     super.initState();
@@ -70,7 +71,7 @@ class _SurahscreenState extends State<Surahscreen> {
                 padding: const EdgeInsets.symmetric(vertical:30.0),
                 child: 
                 
-                FutureBuilder <List<Image>>(
+                FutureBuilder <List<CachedNetworkImage?>>(
                   future:futruePages,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -78,7 +79,9 @@ class _SurahscreenState extends State<Surahscreen> {
                       return const Center(child: CircularProgressIndicator(color: Colors.green));
                     } else if (snapshot.hasError) {
                       // اذا صار في خطأ بجلب البيانات
-                      return Center(child: Text('Error: ${snapshot.error}'));
+                      return Center(child: Text('Error: ${snapshot.error}'
+                      , overflow: TextOverflow.ellipsis,
+                       ));
                     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                       // اذا ما في بيانات متاحة
                       return const Center(child: Text('No data available'));
@@ -86,12 +89,14 @@ class _SurahscreenState extends State<Surahscreen> {
                       // اذا تم جلب البيانات بنجاح
                       final pages = snapshot.data!;
                       // هون بضيف كل الصفحات اللي جبتها من الانترنت الى ليست الصفحات الخاصة بالسورة لحتى نعرضها
-                      return PageView.builder(
-                        itemCount: pages.length,
-                        itemBuilder: (context, index) {
-                          return pages[index];
-                          //  الصور اللي جبتها من الانترنت
-                        },
+                      return Expanded(
+                        child: PageView.builder(
+                          itemCount: pages.length,
+                          itemBuilder: (context, index) {
+                            return  pages[index];
+                            //  الصور اللي جبتها من الانترنت
+                          },
+                        ),
                       );
                     }
                   },

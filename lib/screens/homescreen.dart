@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:quran_application/screens/surahscreen.dart';
+import 'package:quran_application/screens/masaathkar.dart';
+import 'package:quran_application/screens/masbahascreen.dart';
+import 'package:quran_application/screens/sabahathkar.dart';
+ import 'package:quran_application/widgets/screen_widget.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({super.key, required this.surahList});
-  final List surahList;
+  const Homescreen({super.key});
 
   @override
   State<Homescreen> createState() => _HomescreenState();
@@ -14,9 +16,7 @@ class _HomescreenState extends State<Homescreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Image(
-          image: AssetImage('assets/logo.png'),
-        ),
+        leading: Image(image: AssetImage('assets/logo.png')),
 
         title: Text(
           "القرآن الكريم",
@@ -29,53 +29,61 @@ class _HomescreenState extends State<Homescreen> {
         bottom: true,
         child: Directionality(
           textDirection: TextDirection.rtl,
-          child: ListView.builder(
-            itemCount: widget.surahList.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 6.0,
-                  horizontal: 8.0,
-                ),
-                child: ListTile(
-                  onTap: () => Navigator.push(
+          child: Column(
+            spacing: 10,
+            children: [
+              ScreenWidget(
+                Screentitle: "أذكار الصباح",
+                screenicon: Icon(Icons.sunny, size: 80, color: Colors.yellow),
+                screendescription:
+                    '   صباحك نورٌ بالذكر وطمأنينة بالقُرب من الله.',
+                onTap: () {
+                  Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => Surahscreen(
-                        pages: widget.surahList[index].pages,// [from,to] الصفحات الخاصة بالسورة
-                        surahsName: widget.surahList[index].name,
-                      ),
-                      // الانتقال الى صفحة السورة مع ارسال صفحات السورة و اسم السورة
-                    ),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: const BorderSide(color: Colors.green, width: 1),
-                  ),
-                  title: Text(
-                    "(${index + 1}) سورة ${widget.surahList[index].name} ",
-                    style: const TextStyle(fontSize: 20, height: 1.5),
-                  ),
-                  subtitle: Text(
-                    'عدد الآيات: ${widget.surahList[index].numberOfAyahs}',
-                    style: const TextStyle(fontSize: 16, height: 1.5),
-                  ),
-                  trailing: Image(
-                    image: AssetImage(
-                      widget.surahList[index].isMediane
-                          ? 'assets/medinan.png'
-                          : 'assets/kaba.png',
-                    ),
-                    height: 30,
-                    width: 30,
-                  ),
+                    MaterialPageRoute(builder: (context) => Sabahathkar()),
+                  );
+                },
+              ),
+              ScreenWidget(
+                Screentitle: "أذكار المساء",
+                screenicon: Icon(Icons.dark_mode, size: 80, color: Colors.blue),
+                screendescription: " اجعل ختام يومك نوراً بذكر الرحمن.",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Masaathkar()),
+                  );
+                },
+              ),
+              ScreenWidget(
+                Screentitle: "القران الكريم",
+                screenicon: Icon(
+                  Icons.book,
+                  size: 80,
+                  color: const Color.fromARGB(255, 17, 255, 25),
                 ),
-              );
-            },
+                screendescription: " تلاوة القرآن تضيء القلب وتمنح السكينة.",
+                onTap: () {},
+              ),
+              ScreenWidget(
+                Screentitle: " المسبحة الإلكترونية",
+                screenicon: Icon(
+                  Icons.hourglass_full_outlined,
+                  size: 80,
+                  color: Colors.pink,
+                ),
+                screendescription: "اذكر ربك، فبِذكره تطمئن القلوب.",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Masbahascreen()),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
-

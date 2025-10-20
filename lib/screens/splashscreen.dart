@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:quran_application/helper/links.dart';
-import 'package:quran_application/screens/homescreen.dart';
- import 'package:quran_application/helper/network_helper.dart';
+  import 'package:quran_application/helper/network_helper.dart';
+import 'package:quran_application/screens/listsurahscreen.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -19,7 +19,7 @@ class _SplashscreenState extends State<Splashscreen> {
   void initState() {
      super.initState();
      links.getAllSurahs().then((allsurahs){
-       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homescreen(surahList:allsurahs,)));
+       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ListSurahsScreen(surahList:allsurahs,)));
        //الانتقال الى الصفحة الرئيسية مع ارسال كل السور
      });
    }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:quran_application/helper/network_helper.dart';
 import 'package:quran_application/models/surah.dart';
@@ -35,12 +36,12 @@ class Links {
   }
 
   // الصفحات لسورة معينة
-  Future<List<Image>> getSurahsPage(List<dynamic> pages) async {
+  Future<List<CachedNetworkImage?>> getSurahsPage(List<dynamic> pages) async {
     int firstPageNumber = pages[0].toInt();
     int lastPageNumber = pages[1].toInt();
 
     // علشان نجيب صفحات السورة من خلال رقم الصفحة و نحولها الى ليست من نوع سور
-    List<Image> surahsPages = [];
+    List<CachedNetworkImage?> surahsPages = [];
    
      //بلشنا من رقم الصفحة الاولى لحتى نتأكد انو الصفحة محملة 
     for (var i = firstPageNumber; i <= lastPageNumber; i++) {
