@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:quran_application/screens/masaathkar.dart';
+import 'package:quran_application/models/masaandsabahathkar.dart';
+import 'package:quran_application/screens/loadingscreen.dart';
+import 'package:quran_application/screens/athkar.dart';
 import 'package:quran_application/screens/masbahascreen.dart';
-import 'package:quran_application/screens/sabahathkar.dart';
- import 'package:quran_application/widgets/screen_widget.dart';
+import 'package:quran_application/utils/constants.dart';
+  import 'package:quran_application/widgets/screen_widget.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -19,19 +21,34 @@ class _HomescreenState extends State<Homescreen> {
         leading: Image(image: AssetImage('assets/logo.png')),
 
         title: Text(
-          "القرآن الكريم",
+          "النور ",
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: primaryColor,
       ),
       body: SafeArea(
         bottom: true,
         child: Directionality(
           textDirection: TextDirection.rtl,
-          child: Column(
-            spacing: 10,
-            children: [
+          child: ListView(
+            padding: const EdgeInsets.all(10),
+             children: [
+                   ScreenWidget(
+                Screentitle: "القرآن الكريم",
+                screenicon: Icon(
+                  Icons.book,
+                  size: 80,
+                  color: const Color.fromARGB(255, 17, 255, 25),
+                ),
+                screendescription: " تلاوة القرآن تضيء القلب وتمنح السكينة.",
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoadingScreen()),
+                  );
+                },
+              ),
               ScreenWidget(
                 Screentitle: "أذكار الصباح",
                 screenicon: Icon(Icons.sunny, size: 80, color: Colors.yellow),
@@ -40,7 +57,7 @@ class _HomescreenState extends State<Homescreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Sabahathkar()),
+                    MaterialPageRoute(builder: (context) => AthkarScreen(AthkarList: sabahAthkarList, Screentitle: "أذكار الصباح")),
                   );
                 },
               ),
@@ -51,19 +68,25 @@ class _HomescreenState extends State<Homescreen> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Masaathkar()),
+                    MaterialPageRoute(builder: (context) => AthkarScreen(AthkarList: MasaAthkarList, Screentitle: "أذكار المساء")),
                   );
                 },
               ),
+         
               ScreenWidget(
-                Screentitle: "القران الكريم",
+                Screentitle: "أذكار النوم",
                 screenicon: Icon(
-                  Icons.book,
+                  Icons.bed_rounded,
                   size: 80,
-                  color: const Color.fromARGB(255, 17, 255, 25),
+                  color: Colors.brown,
                 ),
-                screendescription: " تلاوة القرآن تضيء القلب وتمنح السكينة.",
-                onTap: () {},
+                screendescription: "اذكر ربك، فبِذكره تطمئن القلوب.",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AthkarScreen(AthkarList: SleepAthkarList, Screentitle: "أذكار النوم")),
+                  );
+                },
               ),
               ScreenWidget(
                 Screentitle: " المسبحة الإلكترونية",

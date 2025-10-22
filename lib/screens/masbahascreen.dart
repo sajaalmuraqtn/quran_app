@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quran_application/utils/constants.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Masbahascreen extends StatefulWidget {
@@ -61,7 +62,7 @@ class _MasbahascreenState extends State<Masbahascreen> {
             width: 120,
           ),
           DialogButton(
-            color: Colors.lightGreen,
+            color: primaryColor,
             child: Text(
               "إكمال الذكر",
               style: TextStyle(color: Colors.white, fontSize: 20),
@@ -84,11 +85,11 @@ class _MasbahascreenState extends State<Masbahascreen> {
         leading: Image(image: AssetImage('assets/logo.png')),
 
         title: Text(
-          " المسبحة الإلكترونية - القرآن الكريم",
+          "${appname} - المسبحة الإلكترونية",
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: primaryColor,
         actions: [
           IconButton(
             icon: const Icon(
@@ -124,7 +125,7 @@ class _MasbahascreenState extends State<Masbahascreen> {
                         width: 250,
                         child: CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.lightGreen,
+                            primaryColor,
                           ),
                           strokeWidth: 6.0,
                           backgroundColor: const Color.fromARGB(
@@ -156,7 +157,7 @@ class _MasbahascreenState extends State<Masbahascreen> {
               SizedBox(height: 60),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightGreen,
+                  backgroundColor: primaryColor,
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),

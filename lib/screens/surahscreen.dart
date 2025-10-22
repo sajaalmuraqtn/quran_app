@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:quran_application/helper/links.dart';
 import 'package:quran_application/helper/network_helper.dart';
 import 'package:quran_application/utils/api_Urls.dart';
+import 'package:quran_application/utils/constants.dart';
 
 class Surahscreen extends StatefulWidget {
     Surahscreen({super.key, required this.pages, required this.surahsName});
@@ -52,7 +53,7 @@ class _SurahscreenState extends State<Surahscreen> {
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: primaryColor,
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_forward, color: Colors.white,size: 30,),
@@ -123,7 +124,7 @@ here is the previous version of the code before the latest edit with out future 
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: primaryColor,
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_forward, color: Colors.white,size: 30,),
@@ -173,7 +174,7 @@ Widget build(BuildContext context) {
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: primaryColor,
       ),
       body: SafeArea(
         bottom: true,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quran_application/screens/homescreen.dart';
 import 'package:quran_application/screens/surahscreen.dart';
+import 'package:quran_application/utils/constants.dart';
 
 class ListSurahsScreen extends StatefulWidget {
   const ListSurahsScreen({super.key, required this.surahList});
@@ -19,11 +21,23 @@ class _ListSurahsScreenState extends State<ListSurahsScreen> {
         ),
 
         title: Text(
-          "القرآن الكريم",
+          "$appname - القرآن الكريم",
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: primaryColor,
+          actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
+              size: 30,
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Homescreen()));
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         bottom: true,
@@ -106,7 +120,7 @@ class _HomescreenState extends State<Homescreen> {
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: Colors.lightGreen,
+        backgroundColor: primaryColor,
       ),
       body: SafeArea(
         bottom: true,

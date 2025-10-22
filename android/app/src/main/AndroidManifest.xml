@@ -3,7 +3,7 @@
 
   
     <application
-        android:label="AyahApp"
+        android:label="NourApp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

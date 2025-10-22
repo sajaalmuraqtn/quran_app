@@ -1,9 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:quran_application/helper/links.dart';
-  import 'package:quran_application/helper/network_helper.dart';
-import 'package:quran_application/screens/listsurahscreen.dart';
+import 'package:quran_application/screens/homescreen.dart';
+import 'package:quran_application/utils/constants.dart'; 
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -14,30 +13,29 @@ class Splashscreen extends StatefulWidget {
 
 class _SplashscreenState extends State<Splashscreen> {
   
-  Links links =  Links();
-@override
+ @override
   void initState() {
      super.initState();
-     links.getAllSurahs().then((allsurahs){
-       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ListSurahsScreen(surahList:allsurahs,)));
-       //الانتقال الى الصفحة الرئيسية مع ارسال كل السور
-     });
+      Future.delayed(Duration(seconds: 10),(){
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Homescreen()));
+      });
    }
 
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.green,
+    return   Scaffold(
+      backgroundColor: primaryColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
              Image(
-              image: AssetImage('assets/quran.gif'),
+              image: AssetImage('assets/logo.png'),
               height: 200,
               width: 200,
             ),
+            Text(" رحلتك اليومية مع القرآن والذكر ",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20), )
           ],
         ),
       ),

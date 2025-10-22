@@ -9,7 +9,7 @@ void main() {
   runApp(
     Directionality(
       textDirection: TextDirection.rtl,
-      child: MaterialApp(debugShowCheckedModeBanner: false, home: Homescreen()),
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: Splashscreen()),
     ),
   );
 }
