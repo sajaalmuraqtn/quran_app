@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:quran_application/utils/api_Urls.dart';
 import 'package:quran_application/utils/constants.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:uni_country_city_picker/uni_country_city_picker.dart';
@@ -38,7 +39,7 @@ class _PrayerTimesScreenState extends State<PrayerTimesScreen> {
     setState(() => isLoadingTimes = true);
 
     final url = Uri.parse(
-        "https://api.aladhan.com/v1/timingsByCity?city=$city&country=$country&method=2");
+        "$baseUrlPrayerTime?city=$city&country=$country&method=2");
 
     try {
       final response = await http.get(url);
