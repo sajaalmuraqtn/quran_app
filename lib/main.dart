@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran_application/screens/homescreen.dart';
+import 'package:quran_application/screens/prayerTimesScreen.dart';
 import 'package:quran_application/screens/surahscreen.dart';
 import 'package:quran_application/screens/splashscreen.dart';
 import 'package:cached_network_image/cached_network_image.dart';

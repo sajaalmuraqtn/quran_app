@@ -69,7 +69,7 @@ List<Athkar> sabahAthkarList = [
     text:
         'سُبْحَانَ اللهِ وَبِحَمْدِهِ.',
     alajer: 'من قالها مئة مرة حُطّت خطاياه ولو كانت مثل زبد البحر.',
-    repeatCount: 1,
+    repeatCount: 100,
   ),
 ];
  

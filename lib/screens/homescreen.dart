@@ -3,6 +3,7 @@ import 'package:quran_application/models/masaandsabahathkar.dart';
 import 'package:quran_application/screens/loadingscreen.dart';
 import 'package:quran_application/screens/athkar.dart';
 import 'package:quran_application/screens/masbahascreen.dart';
+import 'package:quran_application/screens/prayerTimesScreen.dart';
 import 'package:quran_application/utils/constants.dart';
   import 'package:quran_application/widgets/screen_widget.dart';
 
@@ -50,10 +51,22 @@ class _HomescreenState extends State<Homescreen> {
                 },
               ),
               ScreenWidget(
+                Screentitle: "مواقيت الصلاة",
+                screenicon: Icon(Icons.access_time, size: 80, color: Colors.indigoAccent),
+                screendescription:
+                    'الصلاة ساعة لراحة القلب',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) =>PrayerTimesScreen()),
+                  );
+                },
+              ),
+              ScreenWidget(
                 Screentitle: "أذكار الصباح",
                 screenicon: Icon(Icons.sunny, size: 80, color: Colors.yellow),
                 screendescription:
-                    '   صباحك نورٌ بالذكر وطمأنينة بالقُرب من الله.',
+                    'صباحك نورٌ بالذكر وطمأنينة بالقُرب من الله',
                 onTap: () {
                   Navigator.push(
                     context,
@@ -64,7 +77,7 @@ class _HomescreenState extends State<Homescreen> {
               ScreenWidget(
                 Screentitle: "أذكار المساء",
                 screenicon: Icon(Icons.dark_mode, size: 80, color: Colors.blue),
-                screendescription: " اجعل ختام يومك نوراً بذكر الرحمن.",
+                screendescription: " اجعل ختام يومك نوراً بذكر الرحمن",
                 onTap: () {
                   Navigator.push(
                     context,
@@ -80,7 +93,7 @@ class _HomescreenState extends State<Homescreen> {
                   size: 80,
                   color: Colors.brown,
                 ),
-                screendescription: "اذكر ربك، فبِذكره تطمئن القلوب.",
+                screendescription:"استرح، فالله معك وسكينة الليل تملأ قلبك",
                 onTap: () {
                   Navigator.push(
                     context,
