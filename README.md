@@ -2,7 +2,6 @@
 
 **Nour App** is a Flutter application designed to enrich your spiritual life by providing access to the Holy Quran, prayer times, and daily Azkar (remembrances). The app is built with **Material Design principles** and offers a smooth, intuitive experience for users seeking guidance and tranquility.
 
---
 ## 📌 Features
 
 - **Holy Quran**: Browse Quran pages with images and access surahs.  
