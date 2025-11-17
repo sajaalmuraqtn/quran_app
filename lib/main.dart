@@ -9,7 +9,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 void main() {
   runApp(
     Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: TextDirection.rtl, //اتجاه اللغة
       child: MaterialApp(debugShowCheckedModeBanner: false, home: Splashscreen()),
     ),
   );
