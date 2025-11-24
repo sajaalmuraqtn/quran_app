@@ -40,7 +40,9 @@
 
 - **Quran Pages API**: Fetch Arabic pages as images  
 - **Quran Surah API**: Fetch surah information and chapter details  
-- **Aladhan Prayer Times API**: Fetch prayer times based on city and country  
+- **Aladhan Prayer Times API**: Fetch prayer times based on city and country
+
+🔗 **Live Demo:** https://drive.google.com/drive/folders/1RlWhpiiUPews1g3BZahcsFBtgYr3caZO?usp=drive_link  
 
 ## 📷 Screens 
 
